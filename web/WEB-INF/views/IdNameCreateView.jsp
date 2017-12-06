@@ -43,6 +43,7 @@
                         <label for="nameInput">${fieldNameLabel}:</label>
                         <input type="text" class="form-control" id="nameInput" name="nameInput" max="100" required="required" placeholder="Chave de configuração">
                         <span id="contadorInputName" class="label label-warning">100 Restantes!</span>
+                        <input type="text" class="form-control" id="nameInput" name="cpfInput" max="16" required="required" placeholder="CPF">
                     </div>
                    
                 </div><!-- /LINHA-1 -->           

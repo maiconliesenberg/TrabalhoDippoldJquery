@@ -1,6 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.ftd.builderforce.ppm.web.cmds;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,15 +24,13 @@ import org.ftd.educational.catolica.prog4.entities.Cliente;
 
 /**
  *
- * @author ftdippold
+ * @author maicon.liesenberg
  */
-@WebServlet(name = "CustomerMvcServlet", urlPatterns = {"/mvccustomer"}, initParams = {
+@WebServlet(name = "FuncionarioMvcSevlet", urlPatterns = {"/mvcfuncionario"}, initParams = {
     @WebInitParam(name = "do", value = "")})
 
-public class CustomerMvcServlet extends HttpServlet {
-
+public class FuncionarioMvcSevlet extends HttpServlet {
     private static final long serialVersionUID = -1587237767624179860L;
-
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -71,20 +75,18 @@ public class CustomerMvcServlet extends HttpServlet {
 
         request.getRequestDispatcher(nextAction).forward(request, response);
     }
-
+    
     private String buildLstModel(HttpServletRequest request, HttpServletResponse response) {        
         String nextAction = "/WEB-INF/views/ListView.jsp";
+        request.setAttribute("title","Cadastro de Funcionario");
         request.setAttribute("applicationName","Compra e venda");
-        request.setAttribute("title","Cadastro de Clientes");
-        
         request.setAttribute("userName", (String) request.getSession().getAttribute("username"));
         request.setAttribute("datasource", this.findAll());        
         request.setAttribute("showColumnId", true);        
-        
-        request.setAttribute("actionVisu", "mvccustomer?do=readmodel&id=");
-        request.setAttribute("actionToAdd", "mvccustomer?do=addmodel");
-        request.setAttribute("actionToUpd", "mvccustomer?do=updmodel&id=");
-        request.setAttribute("actionToRead", "mvccustomer?do=readmodel&id=");
+        request.setAttribute("actionVisu", "mvcfuncionario?do=readmodel&id=");
+        request.setAttribute("actionToAdd", "mvcfuncionario?do=addmodel");
+        request.setAttribute("actionToUpd", "mvcfuncionario?do=updmodel&id=");
+        request.setAttribute("actionToRead", "mvcfuncionario?do=readmodel&id=");
         
         return nextAction;
     }
@@ -92,7 +94,6 @@ public class CustomerMvcServlet extends HttpServlet {
     private String buildAddModel(HttpServletRequest request, HttpServletResponse response) {
         String nextAction = "/WEB-INF/views/IdNameCreateView.jsp";
 
-        request.setAttribute("applicationName","Compra e venda");
         request.setAttribute("title","Adicionando Novo Cliente");
         
         request.setAttribute("controller","mvccustomer");
@@ -105,11 +106,10 @@ public class CustomerMvcServlet extends HttpServlet {
     private String buildUpdModel(HttpServletRequest request, HttpServletResponse response) {
         String nextAction = "/WEB-INF/views/IdNameUpdateView.jsp";
         String id = this.readParameter(request, "id");
-
-        request.setAttribute("applicationName","Compra e venda");
+        
         request.setAttribute("title","Atualizando o Cliente " + id);
         
-        request.setAttribute("controller","mvccustomer");
+        request.setAttribute("controller","mvcfuncionario");
         request.setAttribute("do","upd");
         request.setAttribute("fieldNameLabel","Nome");        
         
@@ -128,7 +128,7 @@ public class CustomerMvcServlet extends HttpServlet {
         String nextAction = "/WEB-INF/views/IdNameReadView.jsp";
         String id = this.readParameter(request, "id");
          request.setAttribute("title","Visualizar cliente");
-        request.setAttribute("controller","mvccustomer");
+        request.setAttribute("controller","mvcfuncionario");
         request.setAttribute("do","del");
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -140,8 +140,8 @@ public class CustomerMvcServlet extends HttpServlet {
     }
 
     private String doAddNew(HttpServletRequest request, HttpServletResponse response) {
-        String successNextAction = "mvccustomer?do=lstmodel";
-        String failureNextAction = "mvccustomer?do=addmodel";
+        String successNextAction = "mvcfuncionario?do=lstmodel";
+        String failureNextAction = "mvcfuncionario?do=addmodel";
 
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -166,8 +166,8 @@ public class CustomerMvcServlet extends HttpServlet {
     private String doUpdate(HttpServletRequest request, HttpServletResponse response) {
         String id = this.readParameter(request, "id");
         
-        String successNextAction = "mvccustomer?do=lstmodel";
-        String failureNextAction = "mvccustomer?do=updmodel";
+        String successNextAction = "mvcfuncionario?do=lstmodel";
+        String failureNextAction = "mvcfuncionario?do=updmodel";
 
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
@@ -191,7 +191,7 @@ public class CustomerMvcServlet extends HttpServlet {
         
         
         System.out.println("ID DO REMOVE: "+id);
-        String successNextAction = "mvccustomer?do=lstmodel";
+        String successNextAction = "mvcfuncionario?do=lstmodel";
         String failureNextAction = "user?do=readmodel&id=" + id;
         System.out.println("dentro do remove antes");
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
@@ -227,8 +227,7 @@ public class CustomerMvcServlet extends HttpServlet {
         
         return dao.findClienteEntities();
     }
-    
-    
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

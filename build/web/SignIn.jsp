@@ -56,10 +56,10 @@
                         <form id="frmsignin"  name="frmsignin" method="POST" action="signin">
                             <h1>Autenticação</h1>
                             <div>
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="prost@gmail.com" required />
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="josefino@gmail.com" required />
                             </div>
                             <div>
-                                <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Senha" value="sennaviadinho@soutetracampeao" required />
+                                <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Senha" value="senha" required />
                             </div>
                             <div>
                                 <input type="submit" class="btn btn-default submit" value="Autenticar" />

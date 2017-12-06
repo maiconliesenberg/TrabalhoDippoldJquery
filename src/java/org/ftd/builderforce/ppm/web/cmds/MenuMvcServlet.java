@@ -69,7 +69,7 @@ public class MenuMvcServlet extends HttpServlet {
 
     private String buildLstModel(HttpServletRequest request, HttpServletResponse response) {
         String nextAction = "/WEB-INF/views/HomeView.jsp";
-        request.setAttribute("applicationName","Trabalho de Programação 4");
+        request.setAttribute("applicationName","Compra e Venda");
         request.setAttribute("tittle","Menu Principal");
         
         

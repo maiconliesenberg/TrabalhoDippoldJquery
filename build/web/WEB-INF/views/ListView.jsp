@@ -64,6 +64,15 @@
                         <!-- HEADER -->
                         <thead>
                             <tr>
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Nome
+                                </th>
+                                <th>
+                                    CPF
+                                </th>
                                 <th class="actions">
                                     &nbsp;&nbsp;Ações
                                     &nbsp;&nbsp;&nbsp;${listDescriptionLabel}
@@ -75,17 +84,21 @@
                             <c:forEach var="o" items="${datasource}">
                                 <tr>
                                     <td>
+                                        ${o.id}
+                                    </td>
+                                    <td>
+                                      ${o.name}  
+                                    </td>
+                                    <td>
+                                        ${o.cpf}
+                                    </td>
+                                    <td>
                                         <!-- DESCRIÇÃO PRINCIPAL -->
-                                        
                                         <a class="btn btn-warning btn-xs" href="${actionToUpd}${o.id}" title="ATUALIZAR">
                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                        <a class="btn btn-success btn-xs" href="mvccustomer?do=readmodel&id=${o.id}" title="VISUALIZAR/APAGAR">
+                                        <a class="btn btn-success btn-xs" href="${actionVisu}${o.id}" title="VISUALIZAR/APAGAR">
                                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
                                         &nbsp;&nbsp;
-                                        <c:if test="${showColumnId == true}">
-                                            <span class="label label-info">${o.id}</span>&nbsp;
-                                        </c:if>    
-                                        ${o.name}
                                         <!-- /DESCRIÇÃO PRINCIPAL -->
                                     </td>
                                 </tr>
