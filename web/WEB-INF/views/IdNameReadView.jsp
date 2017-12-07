@@ -71,7 +71,7 @@
                 <div class="col-md-6"> 
                     &nbsp;
                     <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">Excluir</a>
-                    <a href="mvccustomer?do=lstmodel" class="btn btn-default">Cancelar</a>
+                    <a href="${botaoCancelar}" class="btn btn-default">Cancelar</a>
                 </div>
             </div>      
 

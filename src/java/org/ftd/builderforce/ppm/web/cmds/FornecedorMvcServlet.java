@@ -1,31 +1,34 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package org.ftd.builderforce.ppm.web.cmds;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ftd.educational.catolica.prog4.daos.ClienteDAO;
+import org.ftd.educational.catolica.prog4.daos.FornecedorDAO;
 import org.ftd.educational.catolica.prog4.daos.exceptions.NonexistentEntityException;
 import org.ftd.educational.catolica.prog4.entities.Cliente;
+import org.ftd.educational.catolica.prog4.entities.Fornecedor;
 
 /**
  *
- * @author ftdippold
+ * @author maicon.liesenberg
  */
-@WebServlet(name = "CustomerMvcServlet", urlPatterns = {"/mvccustomer"}, initParams = {
-    @WebInitParam(name = "do", value = "")})
-
-public class CustomerMvcServlet extends HttpServlet {
-
-    private static final long serialVersionUID = -1587237767624179860L;
+@WebServlet(name = "FornecedorMvcServlet", urlPatterns = {"/mvcfornecedor"})
+public class FornecedorMvcServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -71,22 +74,21 @@ public class CustomerMvcServlet extends HttpServlet {
 
         request.getRequestDispatcher(nextAction).forward(request, response);
     }
-
+    
     private String buildLstModel(HttpServletRequest request, HttpServletResponse response) {        
         String nextAction = "/WEB-INF/views/ListView.jsp";
         request.setAttribute("applicationName","Compra e venda");
-        request.setAttribute("title","Cadastro de Clientes");
+        request.setAttribute("title","Cadastro de Fornecedor");
         
         request.setAttribute("userName", (String) request.getSession().getAttribute("username"));
         request.setAttribute("datasource", this.findAll());        
         request.setAttribute("showColumnId", true);
-        request.setAttribute("nomeCpfCnpj", "CPF");
+        request.setAttribute("nomeCpfCnpj", "CNPJ");
         
-        
-        request.setAttribute("actionVisu", "mvccustomer?do=readmodel&id=");
-        request.setAttribute("actionToAdd", "mvccustomer?do=addmodel");
-        request.setAttribute("actionToUpd", "mvccustomer?do=updmodel&id=");
-        request.setAttribute("actionToRead", "mvccustomer?do=readmodel&id=");
+        request.setAttribute("actionVisu", "mvcfornecedor?do=readmodel&id=");
+        request.setAttribute("actionToAdd", "mvcfornecedor?do=addmodel");
+        request.setAttribute("actionToUpd", "mvcfornecedor?do=updmodel&id=");
+        request.setAttribute("actionToRead", "mvcfornecedor?do=readmodel&id=");
         
         return nextAction;
     }
@@ -95,11 +97,11 @@ public class CustomerMvcServlet extends HttpServlet {
         String nextAction = "/WEB-INF/views/IdNameCreateView.jsp";
 
         request.setAttribute("applicationName","Compra e venda");
-        request.setAttribute("title","Adicionando Novo Cliente");
-        request.setAttribute("inputCpfCnpj","cpfInput");
-        request.setAttribute("placeholderCpfCnpj","CPF");
+        request.setAttribute("title","Adicionando Novo Fornecedor");
+        request.setAttribute("inputCpfCnpj","cnpjInput");
+        request.setAttribute("placeholderCpfCnpj","CNPJ");
         
-        request.setAttribute("controller","mvccustomer");
+        request.setAttribute("controller","mvcfornecedor");
         request.setAttribute("do","add");
         request.setAttribute("fieldNameLabel","Nome");
         
@@ -111,18 +113,18 @@ public class CustomerMvcServlet extends HttpServlet {
         String id = this.readParameter(request, "id");
 
         request.setAttribute("applicationName","Compra e venda");
-        request.setAttribute("title","Atualizando o Cliente " + id);
+        request.setAttribute("title","Atualizando o Forneceodr " + id);
         
-        request.setAttribute("controller","mvccustomer");
+        request.setAttribute("controller","mvcfornecedor");
         request.setAttribute("do","upd");
         request.setAttribute("fieldNameLabel","Nome");
-        request.setAttribute("placeholderCpfCnpj","CPF");
+        request.setAttribute("placeholderCpfCnpj","CNPJ");
         
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
+        FornecedorDAO dao = new FornecedorDAO(factory);
         
-        request.setAttribute("entity",dao.findCliente(Long.parseLong(id)));
+        request.setAttribute("entity",dao.findFornecedor(Long.parseLong(id)));
         
         
         return nextAction;
@@ -133,29 +135,30 @@ public class CustomerMvcServlet extends HttpServlet {
         String nextAction = "/WEB-INF/views/IdNameReadView.jsp";
         String id = this.readParameter(request, "id");
          request.setAttribute("title","Visualizar cliente");
-        request.setAttribute("controller","mvccustomer");
-        request.setAttribute("botaoCancelar","mvccustomer?do=lstmodel");
+        request.setAttribute("controller","mvcfornecedor");
+        request.setAttribute("botaoCancelar","mvcfornecedor?do=lstmodel");
+        
         request.setAttribute("do","del");
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
-        request.setAttribute("entity",dao.findCliente(Long.parseLong(id)));
+        FornecedorDAO dao = new FornecedorDAO(factory);
+        request.setAttribute("entity",dao.findFornecedor(Long.parseLong(id)));
         request.setAttribute("fieldNameLabel","Nome");
         
         return nextAction;
     }
 
     private String doAddNew(HttpServletRequest request, HttpServletResponse response) {
-        String successNextAction = "mvccustomer?do=lstmodel";
-        String failureNextAction = "mvccustomer?do=addmodel";
+        String successNextAction = "mvcfornecedor?do=lstmodel";
+        String failureNextAction = "mvcfornecedor?do=addmodel";
 
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
-        Cliente o = new Cliente();
+        FornecedorDAO dao = new FornecedorDAO(factory);
+        Fornecedor o = new Fornecedor();
         
         o.setName(this.readParameter(request, "nameInput"));
-        o.setCpf(this.readParameter(request, "cpfInput"));
+        o.setCnpj(this.readParameter(request, "cnpjInput"));
         
         try {
             dao.create(o);
@@ -172,16 +175,16 @@ public class CustomerMvcServlet extends HttpServlet {
     private String doUpdate(HttpServletRequest request, HttpServletResponse response) {
         String id = this.readParameter(request, "id");
         
-        String successNextAction = "mvccustomer?do=lstmodel";
-        String failureNextAction = "mvccustomer?do=updmodel";
+        String successNextAction = "mvcfornecedor?do=lstmodel";
+        String failureNextAction = "mvcfornecedor?do=updmodel";
 
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);                      
-        Cliente o = dao.findCliente(Long.parseLong(id));
+        FornecedorDAO dao = new FornecedorDAO(factory);                      
+        Fornecedor o = dao.findFornecedor(Long.parseLong(id));
         o.setName(this.readParameter(request, "nameInput"));
-        o.setCpf(this.readParameter(request, "cpfInput"));
-                
+        o.setCnpj(this.readParameter(request, "cpfInput"));
+        
         try {
             dao.edit(o);
             
@@ -198,17 +201,17 @@ public class CustomerMvcServlet extends HttpServlet {
         
         
         System.out.println("ID DO REMOVE: "+id);
-        String successNextAction = "mvccustomer?do=lstmodel";
+        String successNextAction = "mvcfornecedor?do=lstmodel";
         String failureNextAction = "user?do=readmodel&id=" + id;
         System.out.println("dentro do remove antes");
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
+        FornecedorDAO dao = new FornecedorDAO(factory);
         try {
             System.out.println("dentro do remove");
             dao.destroy(Long.parseLong(id, 10));
         } catch (NonexistentEntityException ex) {
-            Logger.getLogger(CustomerMvcServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FornecedorMvcServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return successNextAction;
@@ -227,14 +230,13 @@ public class CustomerMvcServlet extends HttpServlet {
         return value;
     }
 
-    private List<Cliente> findAll() {
+    private List<Fornecedor> findAll() {
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
+        FornecedorDAO dao = new FornecedorDAO(factory);
         
-        return dao.findClienteEntities();
+        return dao.findFornecedorEntities();
     }
-    
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

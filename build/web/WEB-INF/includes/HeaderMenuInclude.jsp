@@ -13,8 +13,11 @@
             <li><a href="mvcfuncionario?do=lstmodel">Funcionario</a></li>
             <li><a href="mvccustomer?do=lstmodel">Cliente</a></li>
             <li><a href="#">Produto</a></li>
+            <li><a href="mvcfornecedor?do=lstmodel">Fornecedor</a></li>
         </ul>
+        
         <ul class="nav navbar-nav navbar-right">
+            <li><a>Usuario: ${userName}</a></li>
             <li><a href="logout"><span class="glyphicon glyphicon-user"></span>Sair</a></li>
         </ul>
     </div>

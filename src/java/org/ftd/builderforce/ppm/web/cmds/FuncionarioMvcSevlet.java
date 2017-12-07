@@ -19,8 +19,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.ftd.educational.catolica.prog4.daos.ClienteDAO;
+import org.ftd.educational.catolica.prog4.daos.FuncionarioDAO;
 import org.ftd.educational.catolica.prog4.daos.exceptions.NonexistentEntityException;
 import org.ftd.educational.catolica.prog4.entities.Cliente;
+import org.ftd.educational.catolica.prog4.entities.Funcionario;
 
 /**
  *
@@ -80,6 +82,7 @@ public class FuncionarioMvcSevlet extends HttpServlet {
         String nextAction = "/WEB-INF/views/ListView.jsp";
         request.setAttribute("title","Cadastro de Funcionario");
         request.setAttribute("applicationName","Compra e venda");
+        request.setAttribute("nomeCpfCnpj", "CPF");
         request.setAttribute("userName", (String) request.getSession().getAttribute("username"));
         request.setAttribute("datasource", this.findAll());        
         request.setAttribute("showColumnId", true);        
@@ -94,9 +97,12 @@ public class FuncionarioMvcSevlet extends HttpServlet {
     private String buildAddModel(HttpServletRequest request, HttpServletResponse response) {
         String nextAction = "/WEB-INF/views/IdNameCreateView.jsp";
 
-        request.setAttribute("title","Adicionando Novo Cliente");
+        request.setAttribute("applicationName","Compra e venda");
+        request.setAttribute("title","Adicionando Novo Funcionario");
+        request.setAttribute("inputCpfCnpj","cpfInput");
+        request.setAttribute("placeholderCpfCnpj","CPF");
         
-        request.setAttribute("controller","mvccustomer");
+        request.setAttribute("controller","mvcfuncionario");
         request.setAttribute("do","add");
         request.setAttribute("fieldNameLabel","Nome");
         
@@ -107,17 +113,19 @@ public class FuncionarioMvcSevlet extends HttpServlet {
         String nextAction = "/WEB-INF/views/IdNameUpdateView.jsp";
         String id = this.readParameter(request, "id");
         
-        request.setAttribute("title","Atualizando o Cliente " + id);
+        request.setAttribute("title","Atualizando o Funcionario " + id);
         
         request.setAttribute("controller","mvcfuncionario");
         request.setAttribute("do","upd");
-        request.setAttribute("fieldNameLabel","Nome");        
+        request.setAttribute("fieldNameLabel","Nome");
+        request.setAttribute("placeholderCpfCnpj","CPF");
+        
         
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
+        FuncionarioDAO dao = new FuncionarioDAO(factory);
         
-        request.setAttribute("entity",dao.findCliente(Long.parseLong(id)));
+        request.setAttribute("entity",dao.findFuncionario(Long.parseLong(id)));
         
         
         return nextAction;
@@ -127,13 +135,14 @@ public class FuncionarioMvcSevlet extends HttpServlet {
         System.out.println("dentro do view");
         String nextAction = "/WEB-INF/views/IdNameReadView.jsp";
         String id = this.readParameter(request, "id");
-         request.setAttribute("title","Visualizar cliente");
+         request.setAttribute("title","Visualizar Funcionario");
         request.setAttribute("controller","mvcfuncionario");
+        request.setAttribute("botaoCancelar","mvcfuncionario?do=lstmodel");
         request.setAttribute("do","del");
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
-        request.setAttribute("entity",dao.findCliente(Long.parseLong(id)));
+        FuncionarioDAO dao = new FuncionarioDAO(factory);
+        request.setAttribute("entity",dao.findFuncionario(Long.parseLong(id)));
         request.setAttribute("fieldNameLabel","Nome");
         
         return nextAction;
@@ -145,8 +154,8 @@ public class FuncionarioMvcSevlet extends HttpServlet {
 
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
-        Cliente o = new Cliente();
+        FuncionarioDAO dao = new FuncionarioDAO(factory);
+        Funcionario o = new Funcionario();
         
         o.setName(this.readParameter(request, "nameInput"));
         o.setCpf(this.readParameter(request, "cpfInput"));
@@ -171,10 +180,11 @@ public class FuncionarioMvcSevlet extends HttpServlet {
 
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);                      
-        Cliente o = dao.findCliente(Long.parseLong(id));
+        FuncionarioDAO dao = new FuncionarioDAO(factory);                      
+        Funcionario o = dao.findFuncionario(Long.parseLong(id));
         o.setName(this.readParameter(request, "nameInput"));
-                
+        o.setCpf(this.readParameter(request, "cpfInput"));
+        
         try {
             dao.edit(o);
             
@@ -196,12 +206,11 @@ public class FuncionarioMvcSevlet extends HttpServlet {
         System.out.println("dentro do remove antes");
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
+        FuncionarioDAO dao = new FuncionarioDAO(factory);
         try {
-            System.out.println("dentro do remove");
             dao.destroy(Long.parseLong(id, 10));
         } catch (NonexistentEntityException ex) {
-            Logger.getLogger(CustomerMvcServlet.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FuncionarioMvcSevlet.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return successNextAction;
@@ -220,12 +229,12 @@ public class FuncionarioMvcSevlet extends HttpServlet {
         return value;
     }
 
-    private List<Cliente> findAll() {
+    private List<Funcionario> findAll() {
         final String PERSISTENCE_UNIT_NAME = "persistenciaPU";
         EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-        ClienteDAO dao = new ClienteDAO(factory);
+        FuncionarioDAO dao = new FuncionarioDAO(factory);
         
-        return dao.findClienteEntities();
+        return dao.findFuncionarioEntities();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

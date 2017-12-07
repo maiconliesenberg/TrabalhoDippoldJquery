@@ -45,6 +45,7 @@
                         <input type="text" class="form-control" id="nameInput" name="nameInput" max="100" required="required" placeholder="Chave de configuração"
                                value="${entity.name}">
                         <span id="contadorInputName" class="label label-warning">100 Restantes!</span>
+                        <input type="text" class="form-control" name="cpfInput" max="16" required="required" placeholder="${placeholderCpfCnpj}" <c:catch var="exception">value="${entity.cpf}</c:catch>" <c:catch var="exception">value="${entity.cnpj}</c:catch>">
                     </div>                  
                 </div><!-- /LINHA-1 -->                            
 

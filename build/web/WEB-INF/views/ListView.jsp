@@ -71,7 +71,7 @@
                                     Nome
                                 </th>
                                 <th>
-                                    CPF
+                                    ${nomeCpfCnpj}
                                 </th>
                                 <th class="actions">
                                     &nbsp;&nbsp;Ações
@@ -90,7 +90,8 @@
                                       ${o.name}  
                                     </td>
                                     <td>
-                                        ${o.cpf}
+                                        <c:catch var="exception">${o.cpf}</c:catch>
+                                        <c:catch var="exception">${o.cnpj}</c:catch>
                                     </td>
                                     <td>
                                         <!-- DESCRIÇÃO PRINCIPAL -->
