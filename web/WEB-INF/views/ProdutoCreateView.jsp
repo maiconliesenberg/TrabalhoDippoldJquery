@@ -29,30 +29,15 @@
                 <!-- LINHA-1 -->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="nameInput">${fieldNameLabel}:</label>
-                        <input type="text" class="form-control" id="nameInput" name="nameInput" max="100" required="required" placeholder="Chave de configuração">
-                        <span id="contadorInputName" class="label label-warning">100 Restantes!</span>
-                        <br><label for="nameInput">${placeholderCpfCnpj}:</label>
-                        <input type="text" class="form-control" id="nameInput" name="${inputCpfCnpj}" max="16" required="required" placeholder="${placeholderCpfCnpj}">
+                        <label for="nameInput">Nome</label>
+                        <input type="text" class="form-control" id="nameInput" name="nameInput" max="100" required="required" placeholder="Nome">
+                        <span id="contadorInputName" class="label label-warning">100 Restantes!</span><br>
+                        <label for="descricao">Descrição</label>
+                        <input type="text" class="form-control" id="nameInput" name="descricao" max="100" required="required" placeholder="Descrição"><br>
+                        <label for="preco">Preco</label>
+                        <input type="text" class="form-control" id="nameInput" name="preco" max="100" required="required" placeholder="Preço">
                     </div>
-                   
-                </div><!-- /LINHA-1 -->           
-
-                <!-- LINHA-2 -->
-                <c:if test = "${existe == 1}">
-                    <div class="row">
-                        <div class="form-group col-md-2">
-                            <label for="systemCombo">Sistema?</label>                        
-                            <!-- COMBOBOX SISTEMA -->
-                            <SELECT id="systemCombo" name="systemCombo" size="1" class="form-control">
-                                <option value="true">Sim</option> 
-                                <option value="false">Não</option> 
-                            </SELECT><!-- /COMBOBOX SISTEMA -->   
-                        </div> 
-                    </div><!-- /LINHA-2 -->  
-                </c:if>
-
-                                 
+                </div>                
 
                 <!-- LINHA-3 : BUTTONS SAVE AND CANCEL -->
                 <div class="row">

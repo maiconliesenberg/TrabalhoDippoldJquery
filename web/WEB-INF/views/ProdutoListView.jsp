@@ -52,7 +52,7 @@
                 </div>
             </div>
             <!-- /SIMPLE MENU BAR -->
-            <button><a class="btn" href="${actionToAdd}" title="ADICIONAR">
+            <button><a class="btn" href="mvcproduto?do=addmodel" title="ADICIONAR">
             Cadastrar</a></button>
             <!-- DIV-LIST -->
             <div id="list" class="row">
@@ -70,7 +70,10 @@
                                     Nome
                                 </th>
                                 <th>
-                                    ${nomeCpfCnpj}
+                                    Descrição
+                                </th>
+                                <th>
+                                    Preço
                                 </th>
                                 <th class="actions">
                                     &nbsp;&nbsp;Ações
@@ -82,22 +85,23 @@
                             <c:forEach var="o" items="${datasource}">
                                 <tr>
                                     <td>
-                                        ${o.id}
+                                      ${o.id}
                                     </td>
                                     <td>
-                                      ${o.name}  
+                                      ${o.nome}  
                                     </td>
                                     <td>
-                                        <c:catch var="exception">${o.cpf}</c:catch>
-                                        <c:catch var="exception">${o.cnpj}</c:catch>
+                                      ${o.descricao}  
+                                    </td>
+                                    <td>
+                                      ${o.preco}  
                                     </td>
                                     <td>
                                         <!-- DESCRIÇÃO PRINCIPAL -->
-                                        <a class="btn btn-warning btn-xs" href="${actionToUpd}${o.id}" title="ATUALIZAR">
+                                        <a class="btn btn-warning btn-xs" href="mvcproduto?do=updmodel&id=${o.id}" title="ATUALIZAR">
                                             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
-                                        <a class="btn btn-success btn-xs" href="${actionVisu}${o.id}" title="VISUALIZAR/APAGAR">
+                                        <a class="btn btn-success btn-xs" href="mvcproduto?do=readmodel&id=${o.id}" title="VISUALIZAR/APAGAR">
                                             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
-                                        &nbsp;&nbsp;
                                         <!-- /DESCRIÇÃO PRINCIPAL -->
                                     </td>
                                 </tr>

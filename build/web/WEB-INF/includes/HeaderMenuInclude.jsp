@@ -12,7 +12,7 @@
         <ul class="nav navbar-nav">
             <li><a href="mvcfuncionario?do=lstmodel">Funcionario</a></li>
             <li><a href="mvccustomer?do=lstmodel">Cliente</a></li>
-            <li><a href="#">Produto</a></li>
+            <li><a href="mvcproduto?do=lstmodel">Produto</a></li>
             <li><a href="mvcfornecedor?do=lstmodel">Fornecedor</a></li>
         </ul>
         

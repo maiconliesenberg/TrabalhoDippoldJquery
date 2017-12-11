@@ -13,7 +13,7 @@ import org.ftd.builderforce.ppm.web.adapters.MenuItem;
 
 /**
  *
- * @author ftdippold
+ * @author maicon.liesenberg
  */
 @WebServlet(name = "MenuMvcServlet", urlPatterns = {"/mvcmenu"}, initParams = {
     @WebInitParam(name = "do", value = "")})

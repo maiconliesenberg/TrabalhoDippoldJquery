@@ -25,40 +25,27 @@
             <!-- FORM MAIN -->
             <form id="formCreate" name="formCreate" method="POST" action="${controller}">
                 <input type="hidden" id="do" name="do" value="${do}">
+                <input type="hidden" id="id" name="id" value="${entity.id}">
 
                 <!-- LINHA-1 -->
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label for="nameInput">${fieldNameLabel}:</label>
-                        <input type="text" class="form-control" id="nameInput" name="nameInput" max="100" required="required" placeholder="Chave de configuração">
-                        <span id="contadorInputName" class="label label-warning">100 Restantes!</span>
-                        <br><label for="nameInput">${placeholderCpfCnpj}:</label>
-                        <input type="text" class="form-control" id="nameInput" name="${inputCpfCnpj}" max="16" required="required" placeholder="${placeholderCpfCnpj}">
-                    </div>
-                   
-                </div><!-- /LINHA-1 -->           
-
-                <!-- LINHA-2 -->
-                <c:if test = "${existe == 1}">
-                    <div class="row">
-                        <div class="form-group col-md-2">
-                            <label for="systemCombo">Sistema?</label>                        
-                            <!-- COMBOBOX SISTEMA -->
-                            <SELECT id="systemCombo" name="systemCombo" size="1" class="form-control">
-                                <option value="true">Sim</option> 
-                                <option value="false">Não</option> 
-                            </SELECT><!-- /COMBOBOX SISTEMA -->   
-                        </div> 
-                    </div><!-- /LINHA-2 -->  
-                </c:if>
-
-                                 
+                        <label for="nameInput">Nome:</label>
+                        <input type="text" class="form-control" id="nameInput" name="nameInput" max="100" required="required" placeholder="Nome"
+                               value="${entity.nome}">
+                        <span id="contadorInputName" class="label label-warning">100 Restantes!</span><br>
+                        <label for="descricao">Descrição</label>
+                        <input type="text" class="form-control" name="descricao" max="16" required="required" placeholder="Descrição" value="${entity.descricao}">
+                        <label for="preco">Preço</label>
+                        <input type="text" class="form-control" name="preco" max="16" required="required" placeholder="Descrição" value="${entity.preco}">
+                    </div>                  
+                </div><!-- /LINHA-1 -->                            
 
                 <!-- LINHA-3 : BUTTONS SAVE AND CANCEL -->
                 <div class="row">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        <a href="${controller}?do=lstmodel" class="btn btn-default">Cancelar</a>
+                        <a href="mvcproduto?do=lstmodel" class="btn btn-default">Cancelar</a>
                     </div>
                 </div><!-- /LINHA-3 -->
                 <br><br>

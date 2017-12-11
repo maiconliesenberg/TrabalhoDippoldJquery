@@ -98,7 +98,7 @@ public class CustomerMvcServlet extends HttpServlet {
         request.setAttribute("title","Adicionando Novo Cliente");
         request.setAttribute("inputCpfCnpj","cpfInput");
         request.setAttribute("placeholderCpfCnpj","CPF");
-        
+        request.setAttribute("existe",1);
         request.setAttribute("controller","mvccustomer");
         request.setAttribute("do","add");
         request.setAttribute("fieldNameLabel","Nome");

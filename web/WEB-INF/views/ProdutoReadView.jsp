@@ -25,7 +25,7 @@
                             &nbsp;<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>&nbsp;
                             ${entity.id} 
                             &nbsp;Nome: &nbsp;
-                            ${entity.name}</h4>
+                            ${entity.nome}</h4>
                     </div>
                     <div class="modal-body">
                         Deseja realmente excluir este item?
@@ -44,7 +44,7 @@
                 <div class="col-md-6">
                     <h3>
                         ${title} 
-                        &nbsp;<span class="glyphicon glyphicon-hand-right" title="Model" style="color:blue"></span>&nbsp;
+                        Id:&nbsp;
                         ${entity.id} 
                     </h3>
                 </div>
@@ -52,7 +52,11 @@
 
             <div class="row">
                 <div class="col-md-6">
-                    <p>&nbsp;${fieldNameLabel}:&nbsp;${entity.name}</p>
+                    Nome:&nbsp;${entity.nome}
+                    <br>
+                    Descricao: ${entity.descricao}
+                    <br>
+                    Preco: ${entity.preco}
                 </div>
             </div>            
 
@@ -60,7 +64,7 @@
                 <div class="col-md-6"> 
                     &nbsp;
                     <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal">Excluir</a>
-                    <a href="${botaoCancelar}" class="btn btn-default">Cancelar</a>
+                    <a href="mvcproduto?do=lstmodel" class="btn btn-default">Cancelar</a>
                 </div>
             </div>      
 

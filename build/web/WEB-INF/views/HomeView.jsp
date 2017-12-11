@@ -33,26 +33,7 @@
                     <jsp:include page="../includes/HeaderMenuInclude.jsp" />
                 </div>
             </div>
-            <!-- /SIMPLE MENU BAR -->        
-
-            <BR>User: ${userName}<BR><BR>
-
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <label for="comboMenu">Opções:</label>  
-                    <select id="comboMenu" name="comboMenu" size="1">
-                        <option value="#">Selecione uma Opção...</option>
-                        <c:forEach var="o" items="${datasource}">
-                            <option value="${o.url}">${o.name}</option>
-                        </c:forEach>            
-                    </select>  
-                </div>
-                <div class="col-md-12">
-                    <BR><BR><a href="logout">Sair</a>
-                </div>
-
-            </div>  
-            
+            <!-- /SIMPLE MENU BAR -->         
             
         </div><!-- /MAIN CONTAINER --> 
 

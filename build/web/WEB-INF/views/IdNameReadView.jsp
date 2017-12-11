@@ -1,9 +1,3 @@
-<%-- 
-    Document   : IdNameReadView.jsp
-    Created on : 01/09/2017
-    Author     : Fabio Tavares Dippold
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -13,11 +7,6 @@
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <meta name="description" content="PM APP">
-        <meta name="author" content="Fábio Tavares Dippold">
-        <link rel="icon" href="assets/icons/qb-icon.png">
-        <title>${app}</title>
         <!-- Bootstrap -->
         <link href="assets/core/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Bootstrap theme -->
@@ -35,7 +24,7 @@
                             Excluir o ID
                             &nbsp;<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>&nbsp;
                             ${entity.id} 
-                            &nbsp;<span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>&nbsp;
+                            &nbsp;Nome: &nbsp;
                             ${entity.name}</h4>
                     </div>
                     <div class="modal-body">

@@ -14,7 +14,6 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="${app}">
-        <meta name="author" content="Fábio Tavares Dippold">
 
         <link rel="icon" href="assets/icons/qb-icon.png">
         <title>${app}</title>
@@ -75,7 +74,6 @@
                                 </th>
                                 <th class="actions">
                                     &nbsp;&nbsp;Ações
-                                    &nbsp;&nbsp;&nbsp;${listDescriptionLabel}
                                 </th>
                             </tr>
                         </thead><!-- /HEADER -->

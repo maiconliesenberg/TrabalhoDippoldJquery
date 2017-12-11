@@ -100,7 +100,7 @@ public class FornecedorMvcServlet extends HttpServlet {
         request.setAttribute("title","Adicionando Novo Fornecedor");
         request.setAttribute("inputCpfCnpj","cnpjInput");
         request.setAttribute("placeholderCpfCnpj","CNPJ");
-        
+        request.setAttribute("existe",0);
         request.setAttribute("controller","mvcfornecedor");
         request.setAttribute("do","add");
         request.setAttribute("fieldNameLabel","Nome");
